@@ -7,8 +7,8 @@ RUN apk add --no-cache git
 
 # Silicon Launcher Stage
 FROM base AS silicon-stage
-# Copy entire Silicon Launcher directory as local files
-COPY Silicon\ Launcher/ /app/silicon-launcher/
+# Copy entire Silicon Launcher directory
+COPY silicon-eaglercraft-launcher-main /app/silicon-launcher
 WORKDIR /app/silicon-launcher
 
 # Debug: List contents of the directory
