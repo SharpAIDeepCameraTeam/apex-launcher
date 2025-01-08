@@ -9,13 +9,13 @@ RUN apk add --no-cache git
 FROM base AS silicon-stage
 COPY "Silicon Launcher" /app/silicon-launcher
 WORKDIR /app/silicon-launcher
-RUN npm install
+RUN npm install || true
 
 # Ultraviolet Proxy Stage
 FROM base AS ultraviolet-stage
 COPY Ultraviolet-App-main /app/ultraviolet
 WORKDIR /app/ultraviolet
-RUN npm install
+RUN npm install || true
 
 # Final Stage
 FROM base AS final
