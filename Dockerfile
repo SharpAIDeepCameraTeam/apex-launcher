@@ -10,11 +10,6 @@ FROM base AS silicon-stage
 # Copy entire Silicon Launcher directory
 COPY silicon-eaglercraft-launcher-main /app/silicon-launcher
 WORKDIR /app/silicon-launcher
-
-# Debug: List contents of the directory
-RUN echo "Silicon Launcher contents:" && ls -la
-
-# Try to install dependencies, but don't fail if it doesn't work
 RUN npm install || true
 
 # Ultraviolet Proxy Stage
@@ -22,17 +17,22 @@ FROM base AS ultraviolet-stage
 COPY Ultraviolet-App-main /app/ultraviolet
 WORKDIR /app/ultraviolet
 RUN npm install || true
+RUN npm run build || true
 
 # Final Stage
 FROM base AS final
-# Copy all stages
-COPY --from=silicon-stage /app/silicon-launcher /app/silicon-launcher
-COPY --from=ultraviolet-stage /app/ultraviolet /app/ultraviolet
+# Copy all files to serve
+COPY --from=silicon-stage /app/silicon-launcher /app/silicon-eaglercraft-launcher-main
+COPY --from=ultraviolet-stage /app/ultraviolet /app/Ultraviolet-App-main
 COPY index.html /app/index.html
-COPY koyeb.yaml /app/koyeb.yaml
 
-# Debug: Verify copied contents
-RUN echo "Final Silicon Launcher contents:" && ls -la /app/silicon-launcher
+# Set up Ultraviolet
+WORKDIR /app/Ultraviolet-App-main
+RUN npm install || true
+RUN npm run build || true
+
+# Return to app directory
+WORKDIR /app
 
 # Install a simple static file server
 RUN npm install -g serve
@@ -41,4 +41,4 @@ RUN npm install -g serve
 EXPOSE 8000
 
 # Command to run both applications
-CMD ["sh", "-c", "serve -s . -l 8000"]
+CMD ["sh", "-c", "cd /app && serve -s . -l 8000"]
