@@ -1,0 +1,12 @@
+{
+  "name": "apex-launcher",
+  "version": "1.0.0",
+  "description": "Apex Browser Game Launcher",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
