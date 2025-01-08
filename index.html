@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Launcher - Silicon & Ultraviolet</title>
+    <style>
+        :root {
+            --primary-red: #FF0033;
+            --secondary-black: #0A0A0A;
+            --accent-gray: #1A1A1A;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--secondary-black);
+            color: white;
+            overflow-x: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--secondary-black) 0%, var(--accent-gray) 100%);
+        }
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background-color: rgba(255, 0, 51, 0.1);
+            width: 100%;
+        }
+        .header h1 {
+            color: var(--primary-red);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+        .apps-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .app-card {
+            background-color: var(--accent-gray);
+            border: 2px solid var(--primary-red);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .app-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
+        }
+        .app-card h2 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+        .app-card a {
+            display: inline-block;
+            background-color: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .app-card a:hover {
+            background-color: #FF3366;
+        }
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(255, 0, 51, 0.1);
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Apex Launcher</h1>
+            <p>Connecting Powerful Web Applications</p>
+        </div>
+        
+        <div class="apps-container">
+            <div class="app-card">
+                <h2>Silicon Launcher</h2>
+                <p>Eaglercraft Minecraft Client Launcher</p>
+                <a href="/Silicon Launcher/index.html">Launch Silicon</a>
+            </div>
+            
+            <div class="app-card">
+                <h2>Ultraviolet Proxy</h2>
+                <p>Advanced Web Proxy Service</p>
+                <a href="/Ultraviolet-App-main/src/index.js">Launch Ultraviolet</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 SharpAI Deep Camera Team. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
