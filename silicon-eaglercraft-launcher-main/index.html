@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silicon Launcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+    <meta name="description" content="Science Flashcards" />
+    <meta name="keywords" content="science, notes, flashcards">
+    <meta property="og:title" content="Silicon Launcher" />
+    <meta property="og:image" content="icon.png" />
+    <meta property="og:description" content="Notes" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-261780635-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-261780635-1');
+    </script>
+    <script>
+        if(window.location.href !== "about:blank") {
+            const doc = window.open("about:blank", "_blank");
+            if(doc) {
+                doc.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>Science Study Flashcards</title>
+                        <link rel="icon" type="image/x-icon" href="https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico">
+                        <style>
+                            html, body {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                                overflow: hidden;
+                            }
+                            iframe {
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                                margin: 0;
+                                padding: 0;
+                                overflow: hidden;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe width="100%" height="100%" src="${window.location.href}" frameborder="0"></iframe>
+                    </body>
+                    </html>
+                `);
+                doc.document.close();
+                window.location.replace("https://docs.google.com/");
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('keydown', function(e) {
+            // Press ` (backtick) to quickly close tab
+            if(e.key === '`') {
+                // Save any necessary data here if needed
+                window.close();
+                // Fallback if window.close() is blocked
+                window.location.replace('about:blank');
+            }
+        });
+    </script>
+</head>
+<body>
+    <div id="loading"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">SILICON LAUNCHER</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="section-title fade-in">Featured Games</h1>
+            
+            <div class="game-grid">
+                <!-- Eaglercraft Clients -->
+                <div class="game-card fade-in">
+                    <div class="game-info">
+                        <h3 class="game-title">Eaglercraft Clients</h3>
+                        <p class="game-description">Play Minecraft in your browser with various client versions</p>
+                        <a href="clients.html" class="play-button">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Server List -->
+                <div class="game-card fade-in">
+                    <div class="game-info">
+                        <h3 class="game-title">Eaglercraft Servers</h3>
+                        <p class="game-description">Browse and connect to available Eaglercraft servers</p>
+                        <a href="eaglercraft_servers.html" class="play-button">View Servers</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="performance-note fade-in">
+                <div class="note-content">
+                    <span class="note-icon">❌</span>
+                    <p>Press ` (backtick) to instantly close the tab and destroy any trace</p>
+                </div>
+            </div>
+
+            <div class="performance-note fade-in warning-note">
+                <div class="note-content">
+                    <span class="note-icon">⚠️</span>
+                    <p>Always allow popups and redirects to have instant about:blank cloaking to destroy any trace (Do not enter with any file other than index.html)</p>
+                </div>
+            </div>
+
+            <div class="performance-note fade-in danger-note">
+                <div class="note-content">
+                    <span class="note-icon">⚠️</span>
+                    <p>First time launch will leave a trace, as that will be the only time instacloak will not be on (you need to press allow redirects and popups)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(window).on('load', function() {
+            $('#loading').fadeOut(500);
+        });
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script src="splash.js"></script>
+    <script>
+        splash.onload = myFunction;
+    </script>
+    <script>
+        window.onload = function () {
+            //display loader on page load 
+            $('#loading').fadeOut();
+        }
+
+        setTimeout(function () {
+            //display loader on page load 
+            $('#loading').fadeOut();
+        }, 12 * 1000);
+    </script>
+    <script src="darkmode.js"></script>
+</body>
+</html>

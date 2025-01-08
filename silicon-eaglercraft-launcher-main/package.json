@@ -1,0 +1,12 @@
+{
+  "name": "silicon-eaglercraft-launcher",
+  "version": "1.0.0",
+  "description": "Eaglercraft launcher with all versions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
