@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked Clients - Silicon Launcher</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+</head>
+<body>
+    <div id="loading"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">SILICON LAUNCHER</a>
+    </nav>
+
+    <!-- Back Button -->
+    <div class="back-nav">
+        <a href="clients.html" class="back-button">← Back</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <h1 class="section-title fade-in">Hacked Clients</h1>
+
+                <!-- Odd Future -->
+                <div class="game-card fade-in">
+                    <div class="game-info">
+                        <h3 class="game-title">Odd Future</h3>
+                        <p class="game-description">Unique client with experimental features</p>
+                        <a href="resources-git/OddFuture Client.html" class="play-button">Play Now</a>
+                    </div>
+                </div>
+                <div class="game-card fade-in">
+                    <div class="game-info">
+                        <h3 class="game-title">DragonX V2</h3>
+                        <p class="game-description">Best client for Eaglercraft</p>
+                        <a href="resources-git/DragonX_V2_International (1) (1).html" class="play-button">Play Now</a>
+                    </div>
+                </div>
+ 
+
+    <!-- Keep existing scripts -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="splash.js"></script>
+    <script>
+        splash.onload = myFunction;
+    </script>
+    <script>
+        window.onload = function () {
+            $('#loading').fadeOut();
+        }
+        setTimeout(function () {
+            $('#loading').fadeOut();
+        }, 12 * 1000);
+    </script>
+    <script src="darkmode.js"></script>
+</body>
+</html> 
