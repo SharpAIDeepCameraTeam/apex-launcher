@@ -7,8 +7,14 @@ RUN apk add --no-cache git
 
 # Silicon Launcher Stage
 FROM base AS silicon-stage
-COPY "Silicon Launcher" /app/silicon-launcher
+# Copy entire Silicon Launcher directory as local files
+COPY Silicon\ Launcher/ /app/silicon-launcher/
 WORKDIR /app/silicon-launcher
+
+# Debug: List contents of the directory
+RUN echo "Silicon Launcher contents:" && ls -la
+
+# Try to install dependencies, but don't fail if it doesn't work
 RUN npm install || true
 
 # Ultraviolet Proxy Stage
@@ -19,10 +25,14 @@ RUN npm install || true
 
 # Final Stage
 FROM base AS final
+# Copy all stages
 COPY --from=silicon-stage /app/silicon-launcher /app/silicon-launcher
 COPY --from=ultraviolet-stage /app/ultraviolet /app/ultraviolet
 COPY index.html /app/index.html
 COPY koyeb.yaml /app/koyeb.yaml
+
+# Debug: Verify copied contents
+RUN echo "Final Silicon Launcher contents:" && ls -la /app/silicon-launcher
 
 # Install a simple static file server
 RUN npm install -g serve
