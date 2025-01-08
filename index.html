@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Launcher - Silicon & Ultraviolet</title>
+    <title>Apex Launcher - Unblocker & Eaglercraft</title>
     <style>
         :root {
             --primary-red: #FF0033;
             --secondary-black: #0A0A0A;
             --accent-gray: #1A1A1A;
+            --neon-blue: #00FFFF;
         }
         body, html {
             margin: 0;
@@ -22,63 +23,58 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             background: linear-gradient(135deg, var(--secondary-black) 0%, var(--accent-gray) 100%);
         }
         .header {
             text-align: center;
             padding: 2rem;
-            background-color: rgba(255, 0, 51, 0.1);
-            width: 100%;
+            margin-bottom: 2rem;
         }
         .header h1 {
             color: var(--primary-red);
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.7);
         }
         .apps-container {
             display: flex;
             justify-content: center;
             gap: 3rem;
-            margin-top: 3rem;
         }
-        .app-card {
-            background-color: var(--accent-gray);
-            border: 2px solid var(--primary-red);
-            border-radius: 15px;
-            padding: 2rem;
-            width: 300px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .app-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
-        }
-        .app-card h2 {
-            color: var(--primary-red);
-            margin-bottom: 1rem;
-        }
-        .app-card a {
-            display: inline-block;
-            background-color: var(--primary-red);
-            color: white;
+        .app-button {
+            background-color: transparent;
+            border: 3px solid var(--neon-blue);
+            color: var(--neon-blue);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: background-color 0.3s ease;
+            border-radius: 10px;
         }
-        .app-card a:hover {
-            background-color: #FF3366;
+        .app-button:hover {
+            background-color: var(--neon-blue);
+            color: var(--secondary-black);
+            box-shadow: 0 0 20px var(--neon-blue);
         }
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            padding: 1rem;
-            background-color: rgba(255, 0, 51, 0.1);
+        .app-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(0,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+        .app-button:hover::before {
+            left: 100%;
         }
     </style>
 </head>
@@ -86,25 +82,17 @@
     <div class="container">
         <div class="header">
             <h1>Apex Launcher</h1>
-            <p>Connecting Powerful Web Applications</p>
+            <p>Unleash Your Digital Freedom</p>
         </div>
         
         <div class="apps-container">
-            <div class="app-card">
-                <h2>Silicon Launcher</h2>
-                <p>Eaglercraft Minecraft Client Launcher</p>
-                <a href="/Silicon Launcher/index.html">Launch Silicon</a>
-            </div>
+            <a href="/Ultraviolet-App-main/src/index.js" class="app-button">
+                Unblocker
+            </a>
             
-            <div class="app-card">
-                <h2>Ultraviolet Proxy</h2>
-                <p>Advanced Web Proxy Service</p>
-                <a href="/Ultraviolet-App-main/src/index.js">Launch Ultraviolet</a>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>&copy; 2025 SharpAI Deep Camera Team. All rights reserved.</p>
+            <a href="/Silicon Launcher/index.html" class="app-button">
+                Eaglercraft
+            </a>
         </div>
     </div>
 </body>
