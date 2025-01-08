@@ -1,9 +1,0 @@
-.git
-.gitignore
-.DS_Store
-node_modules
-*.zip
-*.html
-!Ultraviolet-App-main/public/index.html
-silicon-eaglercraft-launcher-main/eagler/*.html
-silicon-eaglercraft-launcher-main/Eaglercraft-Clients-main/*.html
