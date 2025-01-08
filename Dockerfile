@@ -28,7 +28,7 @@ COPY koyeb.yaml /app/koyeb.yaml
 RUN npm install -g serve
 
 # Expose port
-EXPOSE 3000
+EXPOSE 8000
 
 # Command to run both applications
-CMD ["sh", "-c", "serve -s . -l 3000"]
+CMD ["sh", "-c", "serve -s . -l 8000"]
