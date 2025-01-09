@@ -8,11 +8,16 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Copy Ultraviolet files
+COPY Ultraviolet-main/src/uv.* ./uv/
+COPY Ultraviolet-main/src/client ./uv/client
+COPY Ultraviolet-main/src/rewrite ./uv/rewrite
+
 # Copy the rest of the application
 COPY . .
 
-# Expose port 8000
+# Expose port
 EXPOSE 8000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
