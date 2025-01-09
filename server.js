@@ -28,6 +28,9 @@ server.on('upgrade', (req, socket, head) => {
 // Serve Ultraviolet files
 app.use('/uv/', express.static(uvPath));
 
+// Inject loader into client files
+require('./scripts/inject-loader');
+
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 

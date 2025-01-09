@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Client...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="client.css">
+</head>
+<body>
+    <div id="overlay">
+        <div style="text-align: center;">
+            <div class="loading-spinner"></div>
+            <div id="loading-text">Loading Client...</div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('overlay').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('overlay').style.display = 'none';
+                }, 500);
+            }, 2000);
+        };
+    </script>
+</body>
+</html>
