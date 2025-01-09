@@ -23,6 +23,22 @@ server.on('upgrade', (req, socket, head) => {
     }
 });
 
+// Serve UV config file first
+app.get('/uv/uv.config.js', (req, res) => {
+    const config = `
+    self.__uv$config = {
+        prefix: '/service/',
+        bare: '/bare/',
+        encodeUrl: Ultraviolet.codec.xor.encode,
+        decodeUrl: Ultraviolet.codec.xor.decode,
+        handler: '/uv/uv.handler.js',
+        bundle: '/uv/uv.bundle.js',
+        config: '/uv/uv.config.js',
+        sw: '/uv/uv.sw.js',
+    };`;
+    res.type('application/javascript').send(config);
+});
+
 // Serve Ultraviolet static files
 app.use('/uv/', express.static(uvPath));
 app.use('/epoxy/', express.static(epoxyPath));
