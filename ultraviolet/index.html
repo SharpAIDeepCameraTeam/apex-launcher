@@ -44,6 +44,12 @@
         .uv-button:hover {
             transform: translateY(-2px);
         }
+        #error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -64,21 +70,48 @@
                     <input class="uv-input" id="uv-address" type="text" placeholder="Enter URL (e.g., https://example.com)" required>
                     <button class="uv-button" type="submit">Go</button>
                 </form>
+                <p id="error">Failed to register service worker. Please try again.</p>
             </div>
         </div>
     </div>
 
-    <script src="/uv/uv.bundle.js"></script>
-    <script src="/uv/uv.config.js"></script>
+    <script src="../public/uv/uv.bundle.js"></script>
+    <script src="../public/uv/uv.config.js"></script>
     <script>
         const form = document.getElementById('uv-form');
         const address = document.getElementById('uv-address');
+        const error = document.getElementById('error');
+        let serviceWorkerRegistered = false;
+
+        // Register service worker
+        async function registerSW() {
+            try {
+                await navigator.serviceWorker.register('../public/uv/uv.sw.js', {
+                    scope: __uv$config.prefix,
+                    updateViaCache: 'none',
+                });
+                serviceWorkerRegistered = true;
+            } catch (err) {
+                error.style.display = 'block';
+                console.error('Failed to register service worker:', err);
+            }
+        }
+
+        registerSW();
 
         form.addEventListener('submit', async event => {
             event.preventDefault();
-            const url = address.value.trim();
-            if (!isUrl(url)) url = 'https://www.google.com/search?q=' + url;
-            else if (!(url.startsWith('https://') || url.startsWith('http://'))) url = 'http://' + url;
+            if (!serviceWorkerRegistered) {
+                error.style.display = 'block';
+                return;
+            }
+
+            let url = address.value.trim();
+            if (!isUrl(url)) {
+                url = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+            } else if (!(url.startsWith('https://') || url.startsWith('http://'))) {
+                url = 'http://' + url;
+            }
             
             window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
         });
