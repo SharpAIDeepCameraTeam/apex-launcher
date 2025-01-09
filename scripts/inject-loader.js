@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Function to inject loader script into HTML files
 function injectLoader(filePath) {
@@ -23,10 +27,10 @@ function injectLoader(filePath) {
 }
 
 // Process all HTML files in the eagler directory
-const eaglerDir = path.join(__dirname, '..', 'Silicon-eaglercraft', 'eagler');
+const eaglerDir = join(__dirname, '..', 'Silicon-eaglercraft', 'eagler');
 fs.readdirSync(eaglerDir).forEach(file => {
     if (file.endsWith('.html')) {
-        injectLoader(path.join(eaglerDir, file));
+        injectLoader(join(eaglerDir, file));
     }
 });
 

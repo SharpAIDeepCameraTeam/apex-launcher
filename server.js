@@ -1,11 +1,15 @@
-const express = require('express');
-const path = require('path');
-const { createServer } = require('node:http');
-const wisp = require('wisp-server-node');
-const { publicPath } = require('ultraviolet-static');
-const { uvPath } = require('@titaniumnetwork-dev/ultraviolet');
-const { epoxyPath } = require('@mercuryworkshop/epoxy-transport');
-const { baremuxPath } = require('@mercuryworkshop/bare-mux/node');
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+import { createServer } from 'node:http';
+import wisp from 'wisp-server-node';
+import { publicPath } from 'ultraviolet-static';
+import { uvPath } from '@titaniumnetwork-dev/ultraviolet';
+import { epoxyPath } from '@mercuryworkshop/epoxy-transport';
+import { baremuxPath } from '@mercuryworkshop/bare-mux/node';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const server = createServer(app);
@@ -26,10 +30,10 @@ app.use('/bare-mux/', express.static(baremuxPath));
 app.use('/ultraviolet/', express.static(publicPath));
 
 // Inject loader into client files
-require('./scripts/inject-loader');
+import('./scripts/inject-loader.js');
 
 // Serve static files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(join(__dirname)));
 
 // Serve the 404 page for all requests except specific routes
 app.use((req, res, next) => {
@@ -44,7 +48,7 @@ app.use((req, res, next) => {
     }
     
     // Serve the 404 page for all other requests
-    res.sendFile(path.join(__dirname, '404_ No active service.html'));
+    res.sendFile(join(__dirname, '404_ No active service.html'));
 });
 
 // Health check endpoint
@@ -54,7 +58,7 @@ app.get('/health', (req, res) => {
 
 // Handle all routes by serving index.html
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(join(__dirname, 'index.html'));
 });
 
 const PORT = process.env.PORT || 8000;
