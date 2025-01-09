@@ -8,11 +8,13 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy Ultraviolet files and build scripts
-COPY Ultraviolet-main ./Ultraviolet-main
+# Copy Ultraviolet app files
+COPY Ultraviolet-App-main ./Ultraviolet-App-main
+
+# Copy scripts and build files
 COPY scripts ./scripts
 
-# Build Ultraviolet
+# Build Ultraviolet and other assets
 RUN npm run build
 
 # Copy the rest of the application

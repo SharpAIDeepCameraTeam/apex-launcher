@@ -1,32 +1,29 @@
 const express = require('express');
 const path = require('path');
-const { createBareServer } = require('@tomphttp/bare-server-node');
+const { createServer } = require('node:http');
+const wisp = require('wisp-server-node');
+const { publicPath } = require('ultraviolet-static');
 const { uvPath } = require('@titaniumnetwork-dev/ultraviolet');
+const { epoxyPath } = require('@mercuryworkshop/epoxy-transport');
+const { baremuxPath } = require('@mercuryworkshop/bare-mux/node');
+
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
-const bareServer = createBareServer('/bare/');
+const server = createServer(app);
 
-// Handle bare server requests
-server.on('request', (req, res) => {
-    if (bareServer.shouldRoute(req)) {
-        bareServer.routeRequest(req, res);
-        return;
-    }
-
-    app(req, res);
-});
-
+// Handle WebSocket upgrades for Ultraviolet
 server.on('upgrade', (req, socket, head) => {
-    if (bareServer.shouldRoute(req)) {
-        bareServer.routeUpgrade(req, socket, head);
-        return;
+    if (req.url.endsWith('/wisp/')) {
+        wisp.routeRequest(req, socket, head);
+    } else {
+        socket.end();
     }
-    socket.end();
 });
 
-// Serve Ultraviolet files
+// Serve Ultraviolet static files
 app.use('/uv/', express.static(uvPath));
+app.use('/epoxy/', express.static(epoxyPath));
+app.use('/bare-mux/', express.static(baremuxPath));
+app.use('/ultraviolet/', express.static(publicPath));
 
 // Inject loader into client files
 require('./scripts/inject-loader');
@@ -34,12 +31,13 @@ require('./scripts/inject-loader');
 // Serve static files
 app.use(express.static(path.join(__dirname)));
 
-// Serve the 404 page for all requests except the secret access
+// Serve the 404 page for all requests except specific routes
 app.use((req, res, next) => {
     // Allow UV and health check routes
     if (req.path.startsWith('/uv/') || 
-        req.path.startsWith('/service/') || 
-        req.path.startsWith('/bare/') || 
+        req.path.startsWith('/epoxy/') || 
+        req.path.startsWith('/bare-mux/') || 
+        req.path.startsWith('/ultraviolet/') || 
         req.path === '/health') {
         next();
         return;
