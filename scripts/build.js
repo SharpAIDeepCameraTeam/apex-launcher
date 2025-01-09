@@ -14,28 +14,19 @@ async function build() {
         fs.mkdirSync(uvDir);
     }
 
-    // Bundle UV
-    await esbuild.build({
-        entryPoints: ['./Ultraviolet-main/src/uv.handler.js'],
-        bundle: true,
-        outfile: './public/uv/uv.handler.js',
-        format: 'iife',
-        globalName: 'UVServiceWorker',
-    });
-
-    await esbuild.build({
-        entryPoints: ['./Ultraviolet-main/src/uv.bundle.js'],
-        bundle: true,
-        outfile: './public/uv/uv.bundle.js',
-        format: 'iife',
-        globalName: 'Ultraviolet',
-    });
-
-    // Copy SW
-    fs.copyFileSync(
-        path.join(__dirname, '..', 'Ultraviolet-main', 'src', 'uv.sw.js'),
-        path.join(uvDir, 'uv.sw.js')
-    );
+    // Copy Ultraviolet app files
+    const uvAppDir = path.join(__dirname, '..', 'Ultraviolet-App-main');
+    const uvStaticDir = path.join(uvAppDir, 'node_modules', 'ultraviolet-static', 'public');
+    
+    if (fs.existsSync(uvStaticDir)) {
+        // Copy all files from UV static directory to our public/uv directory
+        fs.readdirSync(uvStaticDir).forEach(file => {
+            fs.copyFileSync(
+                path.join(uvStaticDir, file),
+                path.join(uvDir, file)
+            );
+        });
+    }
 
     // Create config
     const config = `
